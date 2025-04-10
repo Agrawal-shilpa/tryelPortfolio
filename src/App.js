@@ -4,7 +4,7 @@ import Portfolio from "./packages/blocks/Home/portfolio"
 
 function App() {
   return (
-    <Router>
+    <Router basename='tryelPortfolio'>
       <Routes>
         <Route path="/" element={<Portfolio />} />
       </Routes>
