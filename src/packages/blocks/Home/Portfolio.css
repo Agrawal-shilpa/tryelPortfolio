@@ -35,14 +35,22 @@ body, html {
     overflow-x: hidden;
     /* padding: 2rem; */
   }
+
+  .anchorTag {
+    text-decoration: none;
+    color:var(--text-color);
+  }
   
   .navbar {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-background-color:var(--nav-bg) ;
+    background-color:var(--nav-bg) ;
     padding: 1rem 2rem;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   }
   
   .nav-links {
@@ -110,13 +118,13 @@ background-color:var(--nav-bg) ;
   .hero-text p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #b3b3cc;
+    color: var(--text-color);
   }
   
   .hero-details {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: #b3b3cc;
+    color: var(--text-color);
   }
   
   .hero-details span {
@@ -129,7 +137,7 @@ background-color:var(--nav-bg) ;
     gap: 1rem;
     margin-top: 1rem;
     font-size: 1.2rem;
-    color: #b3b3cc;
+    color: var(--text-color);
   }
   
   .hero-img-container {
@@ -156,6 +164,14 @@ background-color:var(--nav-bg) ;
     background-color: #2c2c3f;
     z-index: 1;
   }
+  .about-portion {
+    justify-content: space-between;
+    gap: 2rem;
+    background-color: var(--nav-bg);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
   
   .about-section {
     display: flex;
@@ -163,10 +179,15 @@ background-color:var(--nav-bg) ;
     gap: 2rem;
     background-color: var(--nav-bg);
     padding: 3rem 2rem;
-    padding-top: 100px;
     border-radius: 12px;
     margin: 2rem 0;
   }
+  .about-heading {
+    width: 100%;
+    text-align: center;
+    /* margin-bottom: 2rem; */
+  }
+  
   .work-section {
       display: flex;
       justify-content: space-between;
@@ -181,7 +202,6 @@ background-color:var(--nav-bg) ;
   #work {
     scroll-margin-top: 100px;
   }
-  
   
   .about-text {
     max-width: 600px;
@@ -202,14 +222,22 @@ background-color:var(--nav-bg) ;
   .about-text p,
   .about-text ul {
     font-size: 1rem;
-    color: #d3d3e0;
+    color: var(--text-color);
     line-height: 1.6;
   }
   .work-text p,
   .work-text ul {
       font-size: 1rem;
-      color:#d3d3e0;
+      color:var(--text-color);
       line-height: 1.6;
+  }
+  .work-label {
+    background-color:  var(--nav-bg);
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
   }
   
   .about-text ul {
@@ -270,6 +298,8 @@ background-color:var(--nav-bg) ;
     border-radius: 20px;
     margin-bottom: 1rem;
     font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
   }
   
   .skills-subtitle {
@@ -302,8 +332,81 @@ background-color:var(--nav-bg) ;
   .skill-card:hover .skill-icon {
     transform: scale(1.5) rotate(5deg);
     box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
-
   }
+
+  .testimonials-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--nav-bg);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .testimonial-carousel .mySlides {
+    display: none;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+    margin-top: 2rem;
+  }
+
+  .read-more-less {
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .expanded {
+    display: block;
+  }
+  
+  .contact-section {
+    padding: 60px 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+  }
+  
+  .contact-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+    
+  }
+  
+  .contact-details p {
+    font-size: 1rem;
+    margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+    
+  }
+  
+  .contact-details a {
+    color: #007bff;
+    text-decoration: none;
+    display: flex;flex-direction: row;
+    
+  }
+  
+  .contact-details a:hover {
+    text-decoration: underline;
+  }
+  
   
   
   @media (max-width: 768px) {
@@ -313,8 +416,7 @@ background-color:var(--nav-bg) ;
     }
     .work-section {
         flex-direction: column;
-        text-align: center;
-        
+        text-align: center; 
     }
   
     .navbar {

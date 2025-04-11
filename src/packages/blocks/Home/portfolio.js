@@ -12,6 +12,8 @@ const SkillCard = ({ icon, name }) => (
 const Portfolio = () => {
   const [theme, setTheme] = useState("light");
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -21,7 +23,39 @@ const Portfolio = () => {
   };
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
-  }
+  };
+
+  // useEffect(() => {
+  //   let slideIndex = 0;
+  //   const x = document.getElementsByClassName("mySlides");
+
+  //   function carousel() {
+  //     for (let i = 0; i < x.length; i++) {
+  //       x[i].style.display = "none";
+  //     }
+  //     slideIndex++;
+  //     if (slideIndex > x.length) {
+  //       slideIndex = 1;
+  //     }
+  //     x[slideIndex - 1].style.display = "block";
+  //     setTimeout(carousel, 2000);
+  //   }
+
+  //   carousel();
+  // }, []);
+
+  useEffect(()=>{
+    if (expandedIndex == null){
+      const interval = setInterval(() => {
+        setSlideIndex((prev) => (prev + 1) % projects.length)
+      }, 3000)
+      return () => clearInterval(interval);
+    }
+  }, [expandedIndex])
+
+  const toggleReadMore = (index) => {
+    setExpandedIndex((prev) => (prev === index ? null : index));
+  };
 
   const skills = [
     { name: "Javascript", icon: require("./assets/js.png") },
@@ -41,6 +75,24 @@ const Portfolio = () => {
     { name: "sql", icon: require("./assets/sql.png") },
     { name: "git", icon: require("./assets/git.png") },
   ];
+
+  const projects = [
+    {
+      title: "Seed Cart ECommerce",
+      description:
+        "An E-Commerce platform for farmers and sellers wherein they will buy and sell all types of agricultural products (seed, pulses, gardening tools, plants, fertilizers etc).",
+    },
+    {
+      title: "HG Application",
+      description:
+        "One of an application in an online school environment which provides a platform for the parents/guardians to enroll their students into a course out of many offered by them. The user can manage the payments and learn about the other activities via announcements and raise a ticket in case of a concern.",
+    },
+    {
+      title: "My Builder Project",
+      description:
+        "A mobile dating for sports fans to connect over their shared interest in the same teams, sporting events, and activities. Users will primarily be entering teams that they like with priority then seeing matches that also share their team interest.",
+    },
+  ];
   return (
     <div>
       <div className="portfolio-container">
@@ -52,13 +104,25 @@ const Portfolio = () => {
           </div>
           <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
             <li>
-              <a href="#about">About</a>
+              <a className="anchorTag" href="#about">
+                About
+              </a>
             </li>
             <li>
-              <a href="#work">Work</a>
+              <a className="anchorTag" href="#work">
+                Work
+              </a>
             </li>
-            <li>Testimonials</li>
-            <li>Contact</li>
+            <li>
+              <a className="anchorTag" href="#skills">
+                Skills
+              </a>
+            </li>
+            <li>
+              <a className="anchorTag" href="#experience">
+                Experience
+              </a>
+            </li>
             <li>
               <button className="download-btn">Download CV</button>
             </li>
@@ -86,86 +150,91 @@ const Portfolio = () => {
           </div>
         </section>
       </div>
+      <div id="about" className="about-portion">
+        <div className="about-heading">
+          <h1>About Me</h1>
+        </div>
+        <section className="about-section">
+          <div className="about-img">
+            <img src={image_Avatar} />
+          </div>
+          <div className="about-text">
+            <h2>Curious about me? Here you have it:</h2>
+            <p>
+              I’m a passionate, self-proclaimed designer who specializes in full
+              stack development (React.js & Node.js). I am very enthusiastic
+              about bringing the technical and visual aspects of digital
+              products to life.
+            </p>
+            <p>
+              I am very much a progressive thinker and enjoy working on products
+              end to end, from ideation all the way to development.
+            </p>
+            <p>
+              When I’m not in full-on developer mode, you can find me hovering
+              around on twitter or on indie hacker, witnessing the journey of
+              early startups or enjoying some free time. You can follow me on
+              Twitter where I share tech-related bites and build in public, or
+              you can follow me on GitHub.
+            </p>
+            <ul>
+              <li>🎓 B.E. in Computer Engineering</li>
+              <li>💼 Full time freelancer</li>
+              <li>📚 Avid learner</li>
+              <li>💡 Aspiring indie hacker</li>
+            </ul>
+            <p>
+              One last thing, I’m available for freelance work, so feel free to
+              reach out and say hello! I promise I don’t bite 😊
+            </p>
+          </div>
+        </section>
+      </div>
 
-      <section id="about" className="about-section">
-        <hi>About Me</hi>
-        <div className="about-img">
-          <img src={image_Avatar} />
+      <div id="work">
+        <div className="about-heading">
+          <h1>Work Experience</h1>
         </div>
-        <div className="about-text">
-          <h2>Curious about me? Here you have it:</h2>
-          <p>
-            I’m a passionate, self-proclaimed designer who specializes in full
-            stack development (React.js & Node.js). I am very enthusiastic about
-            bringing the technical and visual aspects of digital products to
-            life.
-          </p>
-          <p>
-            I am very much a progressive thinker and enjoy working on products
-            end to end, from ideation all the way to development.
-          </p>
-          <p>
-            When I’m not in full-on developer mode, you can find me hovering
-            around on twitter or on indie hacker, witnessing the journey of
-            early startups or enjoying some free time. You can follow me on
-            Twitter where I share tech-related bites and build in public, or you
-            can follow me on GitHub.
-          </p>
-          <ul>
-            <li>🎓 B.E. in Computer Engineering</li>
-            <li>💼 Full time freelancer</li>
-            <li>📚 Avid learner</li>
-            <li>💡 Aspiring indie hacker</li>
-          </ul>
-          <p>
-            One last thing, I’m available for freelance work, so feel free to
-            reach out and say hello! I promise I don’t bite 😊
-          </p>
-        </div>
-      </section>
+        <section className="work-section">
+          <div className="work-text">
+            <h2>Curious about me? Here you have it:</h2>
+            <p>
+              I’m a passionate, self-proclaimed designer who specializes in full
+              stack development (React.js & Node.js). I am very enthusiastic
+              about bringing the technical and visual aspects of digital
+              products to life. User experience, pixel perfect design, and
+              writing clean, readable, highly performant code matters to me.
+            </p>
+            <p>
+              I am very much a progressive thinker and enjoy working on products
+              end to end, from ideation all the way to development.
+            </p>
+            <p>
+              When I’m not in full-on developer mode, you can find me hovering
+              around on twitter or on indie hacker, witnessing the journey of
+              early startups or enjoying some free time. You can follow me on
+              Twitter where I share tech-related bites and build in public, or
+              you can follow me on GitHub.
+            </p>
+            <ul>
+              <li>🎓 B.E. in Computer Engineering</li>
+              <li>💼 Full time freelancer</li>
+              <li>📚 Avid learner</li>
+              <li>💡 Aspiring indie hacker</li>
+            </ul>
+            <p>
+              One last thing, I’m available for freelance work, so feel free to
+              reach out and say hello! I promise I don’t bite 😊
+            </p>
+          </div>
+          <div className="work-img">
+            <img src={image_Avatar} />
+          </div>
+        </section>
+      </div>
 
-      <section id="work" className="work-section">
-        <div>
-          <hi>Work Experience</hi>
-        </div>
-        <div className="work-text">
-          <h2>Curious about me? Here you have it:</h2>
-          <p>
-            I’m a passionate, self-proclaimed designer who specializes in full
-            stack development (React.js & Node.js). I am very enthusiastic about
-            bringing the technical and visual aspects of digital products to
-            life. User experience, pixel perfect design, and writing clean,
-            readable, highly performant code matters to me.
-          </p>
-          <p>
-            I am very much a progressive thinker and enjoy working on products
-            end to end, from ideation all the way to development.
-          </p>
-          <p>
-            When I’m not in full-on developer mode, you can find me hovering
-            around on twitter or on indie hacker, witnessing the journey of
-            early startups or enjoying some free time. You can follow me on
-            Twitter where I share tech-related bites and build in public, or you
-            can follow me on GitHub.
-          </p>
-          <ul>
-            <li>🎓 B.E. in Computer Engineering</li>
-            <li>💼 Full time freelancer</li>
-            <li>📚 Avid learner</li>
-            <li>💡 Aspiring indie hacker</li>
-          </ul>
-          <p>
-            One last thing, I’m available for freelance work, so feel free to
-            reach out and say hello! I promise I don’t bite 😊
-          </p>
-        </div>
-        <div className="work-img">
-          <img src={image_Avatar} />
-        </div>
-      </section>
-
-      <section className="skills-section">
-        <h3 className="skills-label">Skills</h3>
+      <section id="skills" className="skills-section">
+        <h1>Skills</h1>
         <p className="skills-subtitle">
           The skills, tools and technologies I am really good at:
         </p>
@@ -173,6 +242,70 @@ const Portfolio = () => {
           {skills.map((skill, idx) => (
             <SkillCard key={idx} icon={skill.icon} name={skill.name} />
           ))}
+        </div>
+      </section>
+
+      {/* <section className="testimonials-section">
+      <h1>Projects</h1>
+      <div className="w3-content testimonial-carousel" style={{ maxWidth: "400px" }}>
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="mySlides w3-container w3-xlarge w3-white w3-card-4"
+            style={{ display: index === slideIndex || expandedIndex === index ? "block" : "none" }}
+          >
+            <h1><b>{project.title}</b></h1>
+            <p className={expandedIndex === index ? "expanded" : "clamp"}>
+              {project.description}
+            </p>
+            <span className="read-more" onClick={() => toggleReadMore(index)}>
+              {expandedIndex === index ? "Read less" : "Read more"}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section> */}
+
+    <section id="contact" className="contact-section">
+        <h1>Contact</h1>
+        <p className="contact-subtitle">
+          Got a project or just want to say hi? Feel free to reach out 👇
+        </p>
+        <div className="contact-details">
+          <p>
+            
+            <a href="mailto:your.email@example.com">📧 Email:{" "}</a>
+          </p>
+          <p>
+            
+            <a
+              href="https://linkedin.com/in/your-profile"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🔗 LinkedIn:{" "}
+            </a>
+          </p>
+          <p>
+            
+            <a
+              href="https://twitter.com/yourhandle"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🐦 Twitter:{" "}
+            </a>
+          </p>
+          <p>
+            
+            <a
+              href="https://yourportfolio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🌐 Portfolio:{" "}
+            </a>
+          </p>
         </div>
       </section>
     </div>
