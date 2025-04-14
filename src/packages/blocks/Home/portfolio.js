@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Portfolio.css";
 import image_Avatar from "./assets/image_Avatar.png";
+import workImage from "./assets/workImage.png";
 
 const SkillCard = ({ icon, name }) => (
   <div className="skill-card">
@@ -10,13 +11,17 @@ const SkillCard = ({ icon, name }) => (
 );
 
 const Portfolio = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
+  
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -24,6 +29,48 @@ const Portfolio = () => {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
+  const experiences = [
+    {
+      title: "Sr. Frontend Developer",
+      company: "Wovvtech Technology",
+      duration: "Feb 2021 - Present",
+      direction: "left",
+      points: [
+        "Developed and maintained responsive web applications using React.js and Tailwind CSS.",
+        "Collaborated with cross-functional teams to deliver features on time and with high code quality.",
+        "Optimized UI performance, reducing load times by 30% through code-splitting and lazy loading.",
+        "Implemented reusable components and design systems, improving development efficiency.",
+      ],
+    },
+    {
+      title: "Software Developer (Python)",
+      company: "Invictus Dynamics",
+      duration: "May 2020 - Dec 2020",
+      direction: "right",
+      points: [
+        "Built backend APIs using Django and Flask to support internal tools and customer dashboards.",
+        "Wrote efficient data parsers and automation scripts for large-scale data ingestion.",
+        "Integrated third-party APIs and worked on OAuth-based authentication systems.",
+        "Collaborated with frontend teams to deliver seamless user experiences.",
+      ],
+    },
+  ];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+  });
 
   // useEffect(() => {
   //   let slideIndex = 0;
@@ -44,14 +91,14 @@ const Portfolio = () => {
   //   carousel();
   // }, []);
 
-  useEffect(()=>{
-    if (expandedIndex == null){
+  useEffect(() => {
+    if (expandedIndex == null) {
       const interval = setInterval(() => {
-        setSlideIndex((prev) => (prev + 1) % projects.length)
-      }, 3000)
+        setSlideIndex((prev) => (prev + 1) % projects.length);
+      }, 3000);
       return () => clearInterval(interval);
     }
-  }, [expandedIndex])
+  }, [expandedIndex]);
 
   const toggleReadMore = (index) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
@@ -95,44 +142,43 @@ const Portfolio = () => {
   ];
   return (
     <div>
+      <nav className="navbar">
+        <div className="menu-icon" onClick={toggleMenu}>
+          <div className={isMenuOpen ? "bar1 change" : "bar1"}></div>
+          <div className={isMenuOpen ? "bar2 change" : "bar2"}></div>
+          <div className={isMenuOpen ? "bar3 change" : "bar3"}></div>
+        </div>
+        <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
+          <li>
+            <a className="anchorTag" href="#about">
+              About
+            </a>
+          </li>
+          <li>
+            <a className="anchorTag" href="#skills">
+              Skills
+            </a>
+          </li>
+          <li>
+            <a className="anchorTag" href="#work">
+            Experience
+            </a>
+          </li>
+          
+          
+          <li>
+          <a className="anchorTag" href="#contact">
+              Contact
+            </a>
+          </li>
+          <li>
+            <button onClick={toggleTheme} className="theme-toggle">
+              {theme === "light" ? "🌙 " : "☀️"}
+            </button>
+          </li>
+        </ul>
+      </nav>
       <div className="portfolio-container">
-        <nav className="navbar">
-          <div className="menu-icon" onClick={toggleMenu}>
-            <div className={isMenuOpen ? "bar1 change" : "bar1"}></div>
-            <div className={isMenuOpen ? "bar2 change" : "bar2"}></div>
-            <div className={isMenuOpen ? "bar3 change" : "bar3"}></div>
-          </div>
-          <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
-            <li>
-              <a className="anchorTag" href="#about">
-                About
-              </a>
-            </li>
-            <li>
-              <a className="anchorTag" href="#work">
-                Work
-              </a>
-            </li>
-            <li>
-              <a className="anchorTag" href="#skills">
-                Skills
-              </a>
-            </li>
-            <li>
-              <a className="anchorTag" href="#experience">
-                Experience
-              </a>
-            </li>
-            <li>
-              <button className="download-btn">Download CV</button>
-            </li>
-            <li>
-              <button onClick={toggleTheme} className="theme-toggle">
-                {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-              </button>
-            </li>
-          </ul>
-        </nav>
         <section className="hero">
           <div className="hero-text">
             <h1>Hi, I’m Shilpa 👋</h1>
@@ -148,99 +194,86 @@ const Portfolio = () => {
               <span>✅ Available for new projects</span>
             </div>
           </div>
+          <div className="about-img">
+            <img src={image_Avatar} />
+          </div>
         </section>
       </div>
       <div id="about" className="about-portion">
         <div className="about-heading">
-          <h1>About Me</h1>
+          <div className="experience-badge">About Me</div>
         </div>
-        <section className="about-section">
-          <div className="about-img">
-            <img src={image_Avatar} />
-          </div>
-          <div className="about-text">
-            <h2>Curious about me? Here you have it:</h2>
-            <p>
-              I’m a passionate, self-proclaimed designer who specializes in full
-              stack development (React.js & Node.js). I am very enthusiastic
-              about bringing the technical and visual aspects of digital
-              products to life.
-            </p>
-            <p>
-              I am very much a progressive thinker and enjoy working on products
-              end to end, from ideation all the way to development.
-            </p>
-            <p>
-              When I’m not in full-on developer mode, you can find me hovering
-              around on twitter or on indie hacker, witnessing the journey of
-              early startups or enjoying some free time. You can follow me on
-              Twitter where I share tech-related bites and build in public, or
-              you can follow me on GitHub.
-            </p>
-            <ul>
-              <li>🎓 B.E. in Computer Engineering</li>
-              <li>💼 Full time freelancer</li>
-              <li>📚 Avid learner</li>
-              <li>💡 Aspiring indie hacker</li>
-            </ul>
-            <p>
-              One last thing, I’m available for freelance work, so feel free to
-              reach out and say hello! I promise I don’t bite 😊
-            </p>
-          </div>
-        </section>
-      </div>
 
-      <div id="work">
-        <div className="about-heading">
-          <h1>Work Experience</h1>
+        {/* <section className="about-section"> */}
+
+        <div className="about-text">
+          <h2>Curious about me? Here you have it:</h2>
+          <p>
+            I’m a passionate, self-proclaimed designer who specializes in full
+            stack development (React.js & Node.js). I am very enthusiastic about
+            bringing the technical and visual aspects of digital products to
+            life.
+          </p>
+          <p>
+            I am very much a progressive thinker and enjoy working on products
+            end to end, from ideation all the way to development.
+          </p>
+          <p>
+            When I’m not in full-on developer mode, you can find me hovering
+            around on twitter or on indie hacker, witnessing the journey of
+            early startups or enjoying some free time. You can follow me on
+            Twitter where I share tech-related bites and build in public, or you
+            can follow me on GitHub.
+          </p>
+          <ul>
+            <li>🎓 Bachlor of Engineering</li>
+            <li>💼 Full time freelancer</li>
+            <li>📚 Avid learner</li>
+            <li>💡 Aspiring indie hacker</li>
+          </ul>
+          <p>
+            One last thing, I’m available for freelance work, so feel free to
+            reach out and say hello! I promise I don’t bite 😊
+          </p>
         </div>
-        <section className="work-section">
-          <div className="work-text">
-            <h2>Curious about me? Here you have it:</h2>
-            <p>
-              I’m a passionate, self-proclaimed designer who specializes in full
-              stack development (React.js & Node.js). I am very enthusiastic
-              about bringing the technical and visual aspects of digital
-              products to life. User experience, pixel perfect design, and
-              writing clean, readable, highly performant code matters to me.
-            </p>
-            <p>
-              I am very much a progressive thinker and enjoy working on products
-              end to end, from ideation all the way to development.
-            </p>
-            <p>
-              When I’m not in full-on developer mode, you can find me hovering
-              around on twitter or on indie hacker, witnessing the journey of
-              early startups or enjoying some free time. You can follow me on
-              Twitter where I share tech-related bites and build in public, or
-              you can follow me on GitHub.
-            </p>
-            <ul>
-              <li>🎓 B.E. in Computer Engineering</li>
-              <li>💼 Full time freelancer</li>
-              <li>📚 Avid learner</li>
-              <li>💡 Aspiring indie hacker</li>
-            </ul>
-            <p>
-              One last thing, I’m available for freelance work, so feel free to
-              reach out and say hello! I promise I don’t bite 😊
-            </p>
-          </div>
-          <div className="work-img">
-            <img src={image_Avatar} />
-          </div>
-        </section>
+        {/* </section> */}
       </div>
-
       <section id="skills" className="skills-section">
-        <h1>Skills</h1>
+        <div className="experience-badge">skills</div>
         <p className="skills-subtitle">
           The skills, tools and technologies I am really good at:
         </p>
         <div className="skills-grid">
           {skills.map((skill, idx) => (
             <SkillCard key={idx} icon={skill.icon} name={skill.name} />
+          ))}
+        </div>
+      </section>
+
+      <section id="work" className="experience-section fade-in">
+        <div className="experience-container">
+          <div className="experience-header">
+            <div className="experience-badge">Experience</div>
+            <h2 className="experience-title">
+              Here is a quick summary of my most recent experiences:
+            </h2>
+          </div>
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className={`experience-card ${
+                exp.direction === "left" ? "slide-in-left" : "slide-in-right"
+              }`}
+            >
+              <h4 className="company-name">{exp.company}</h4>
+              <h3>{exp.title}</h3>
+              <span className="duration">{exp.duration}</span>
+              <ul>
+                {exp.points.map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </section>
@@ -266,18 +299,16 @@ const Portfolio = () => {
       </div>
     </section> */}
 
-    <section id="contact" className="contact-section">
-        <h1>Contact</h1>
+      <section id="contact" className="contact-section">
+        <div className="experience-badge">Contact</div>
         <p className="contact-subtitle">
           Got a project or just want to say hi? Feel free to reach out 👇
         </p>
         <div className="contact-details">
           <p>
-            
-            <a href="mailto:your.email@example.com">📧 Email:{" "}</a>
+            <a href="shilpaneware@gmail.com">📧 Email: </a>
           </p>
           <p>
-            
             <a
               href="https://linkedin.com/in/your-profile"
               target="_blank"
@@ -287,17 +318,6 @@ const Portfolio = () => {
             </a>
           </p>
           <p>
-            
-            <a
-              href="https://twitter.com/yourhandle"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🐦 Twitter:{" "}
-            </a>
-          </p>
-          <p>
-            
             <a
               href="https://yourportfolio.com"
               target="_blank"
