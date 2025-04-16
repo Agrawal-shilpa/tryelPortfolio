@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Portfolio.css";
 import image_Avatar from "./assets/image_Avatar.png";
-import workImage from "./assets/workImage.png";
+import logo from "./assets/logo.jpg";
+import sportsFans from "./assets/sportsFans.jpeg";
+import learning from "./assets/learning.jpeg";
+import seedCart from "./assets/seedCart.jpeg";
 
 const SkillCard = ({ icon, name }) => (
   <div className="skill-card">
@@ -14,7 +17,7 @@ const Portfolio = () => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
   });
-  
+
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -127,22 +130,74 @@ const Portfolio = () => {
     {
       title: "Seed Cart ECommerce",
       description:
-        "An E-Commerce platform for farmers and sellers wherein they will buy and sell all types of agricultural products (seed, pulses, gardening tools, plants, fertilizers etc).",
+        "An E-Commerce platform for farmers and sellers wherein they will buy and sell all types of agricultural products (seed, pulses, gardening tools ,plants, fertilizers etc).",
+      tech: ["Python", "Tensorflow", "Keras", "+2"],
+      image: seedCart,
+      detailsUrl: "#",
+      liveUrl: "#",
+      githubUrl: "#",
     },
     {
       title: "HG Application",
       description:
-        "One of an application in an online school environment which provides a platform for the parents/guardians to enroll their students into a course out of many offered by them. The user can manage the payments and learn about the other activities via announcements and raise a ticket in case of a concern.",
+        "One of an application in an online school environment which provides a platform for the parents/guardians to enroll their students into a course out of many offered by them. The user can manage the payments and learn about the other activities via announcements and raise a ticket in case of a concern",
+      tech: ["Python", "Tensorflow", "Keras", "+2"],
+      image: learning,
+      detailsUrl: "#",
+      liveUrl: "#",
+      githubUrl: "#",
     },
     {
       title: "My Builder Project",
       description:
-        "A mobile dating for sports fans to connect over their shared interest in the same teams, sporting events, and activities. Users will primarily be entering teams that they like with priority then seeing matches that also share their team interest.",
+        "A mobile dating for sports fans to connect over their shared interest in the same teams, sporting events, and activities. Users will primarily be entering teams that they like with priority then seeing matches that also share their team interest. ",
+      tech: ["Python", "Tensorflow", "Keras", "+2"],
+      image: sportsFans,
+      detailsUrl: "#",
+      liveUrl: "#",
+      githubUrl: "#",
     },
   ];
   return (
     <div>
       <nav className="navbar">
+      <img src={logo} alt="Logo" className="navbar-logo" />
+        <div className="menu-icon" onClick={toggleMenu}>
+          <div className={isMenuOpen ? "bar1 change" : "bar1"}></div>
+          <div className={isMenuOpen ? "bar2 change" : "bar2"}></div>
+          <div className={isMenuOpen ? "bar3 change" : "bar3"}></div>
+        </div>
+        
+        <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
+          <li>
+            <a className="anchorTag" href="#about">
+              About
+            </a>
+          </li>
+          <li>
+            <a className="anchorTag" href="#skills">
+              Skills
+            </a>
+          </li>
+          <li>
+            <a className="anchorTag" href="#work">
+              Experience
+            </a>
+          </li>
+          <li>
+            <a className="anchorTag" href="#contact">
+              Contact
+            </a>
+          </li>
+          <li>
+            <button onClick={toggleTheme} className="theme-toggle">
+              {theme === "light" ? "🌙 " : "☀️"}
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      {/* <nav className="navbar">
         <div className="menu-icon" onClick={toggleMenu}>
           <div className={isMenuOpen ? "bar1 change" : "bar1"}></div>
           <div className={isMenuOpen ? "bar2 change" : "bar2"}></div>
@@ -177,11 +232,11 @@ const Portfolio = () => {
             </button>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <div className="portfolio-container">
         <section className="hero">
           <div className="hero-text">
-            <h1>Hi, I’m Shilpa 👋</h1>
+            <h2>Hi, I’m Shilpa 👋</h2>
             <p>
               I’m a front-end developer (React Native & React.js) with a focus
               on creating (and occasionally designing) exceptional digital
@@ -298,6 +353,51 @@ const Portfolio = () => {
         ))}
       </div>
     </section> */}
+
+      <section className="projects-section">
+        <div className="experience-badge">Projects</div>
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            <div className="project-card" key={index}>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="project-image"
+              />
+              <div className="project-content">
+                <div className="project-tags">
+                  {project.tech.map((tag, i) => (
+                    <span className="tag" key={i}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h2 className="project-title">{project.title}</h2>
+                <p className="project-desc">{project.description}</p>
+                <div className="project-links">
+                  <a href={project.detailsUrl} target="_blank" rel="noreferrer">
+                    👁️ Details
+                  </a>
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                      🔗
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      🖥️
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section id="contact" className="contact-section">
         <div className="experience-badge">Contact</div>
