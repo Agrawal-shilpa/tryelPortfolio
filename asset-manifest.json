@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/tryelPortfolio/static/css/main.7b4a61f3.css",
-    "main.js": "/tryelPortfolio/static/js/main.07187a63.js",
+    "main.css": "/tryelPortfolio/static/css/main.398c9f7d.css",
+    "main.js": "/tryelPortfolio/static/js/main.eb9c2a40.js",
     "static/js/453.c5e83800.chunk.js": "/tryelPortfolio/static/js/453.c5e83800.chunk.js",
-    "static/media/workImage.png": "/tryelPortfolio/static/media/workImage.54a5c7ebaaeb827d87db.png",
     "static/media/image_Avatar.png": "/tryelPortfolio/static/media/image_Avatar.04d169e8e49c6630f244.png",
+    "static/media/logo.jpg": "/tryelPortfolio/static/media/logo.32247f370af4ac0754d1.jpg",
+    "static/media/learning.jpeg": "/tryelPortfolio/static/media/learning.c5372644a69a1886b0dc.jpeg",
+    "static/media/sportsFans.jpeg": "/tryelPortfolio/static/media/sportsFans.473ba21c6c5a345e7706.jpeg",
+    "static/media/seedCart.jpeg": "/tryelPortfolio/static/media/seedCart.f15c37bea60c3c396b2a.jpeg",
     "index.html": "/tryelPortfolio/index.html",
-    "main.7b4a61f3.css.map": "/tryelPortfolio/static/css/main.7b4a61f3.css.map",
-    "main.07187a63.js.map": "/tryelPortfolio/static/js/main.07187a63.js.map",
+    "main.398c9f7d.css.map": "/tryelPortfolio/static/css/main.398c9f7d.css.map",
+    "main.eb9c2a40.js.map": "/tryelPortfolio/static/js/main.eb9c2a40.js.map",
     "453.c5e83800.chunk.js.map": "/tryelPortfolio/static/js/453.c5e83800.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b4a61f3.css",
-    "static/js/main.07187a63.js"
+    "static/css/main.398c9f7d.css",
+    "static/js/main.eb9c2a40.js"
   ]
 }
