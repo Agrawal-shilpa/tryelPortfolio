@@ -185,6 +185,11 @@ const Portfolio = () => {
             </a>
           </li>
           <li>
+            <a className="anchorTag" href="#project">
+              Project
+            </a>
+          </li>
+          <li>
             <a className="anchorTag" href="#contact">
               Contact
             </a>
@@ -354,7 +359,7 @@ const Portfolio = () => {
       </div>
     </section> */}
 
-      <section className="projects-section">
+      <section id="project" className="projects-section">
         <div className="experience-badge">Projects</div>
         <div className="projects-grid">
           {projects.map((project, index) => (
