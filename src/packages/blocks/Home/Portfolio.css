@@ -1,4 +1,4 @@
-/* Portfolio.css */
+Portfolio.css
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
@@ -249,11 +249,13 @@ html,
 .experience-badge {
   background-color: var(--heading-bg);
   color: var(--text-color);
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  font-style:italic;
   padding: 4px 12px;
   border-radius: 20px;
   display: inline-block;
-
+  margin-bottom: 20px;
 }
 
 .experience-title {
@@ -494,6 +496,9 @@ html,
   background: var(--bg-color);
   color: var(--text-color);
   font-family: 'Segoe UI', sans-serif;
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; 
 }
 
 .section-title {
@@ -543,7 +548,7 @@ html,
 
 @media (max-width: 768px) {
   .hero{
-    flex-direction: column-reverse; /* Image on top */
+    flex-direction: column-reverse; 
     align-items: center;
     text-align: center;
     padding: 2rem 1rem;
