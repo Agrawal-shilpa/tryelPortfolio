@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tryelPortfolio/static/css/main.398c9f7d.css",
+    "main.css": "/tryelPortfolio/static/css/main.fd279197.css",
     "main.js": "/tryelPortfolio/static/js/main.23cc0f5b.js",
     "static/js/453.c5e83800.chunk.js": "/tryelPortfolio/static/js/453.c5e83800.chunk.js",
     "static/media/image_Avatar.png": "/tryelPortfolio/static/media/image_Avatar.614084478b50688bd856.png",
@@ -9,12 +9,12 @@
     "static/media/sportsFans.jpeg": "/tryelPortfolio/static/media/sportsFans.473ba21c6c5a345e7706.jpeg",
     "static/media/seedCart.jpeg": "/tryelPortfolio/static/media/seedCart.f15c37bea60c3c396b2a.jpeg",
     "index.html": "/tryelPortfolio/index.html",
-    "main.398c9f7d.css.map": "/tryelPortfolio/static/css/main.398c9f7d.css.map",
+    "main.fd279197.css.map": "/tryelPortfolio/static/css/main.fd279197.css.map",
     "main.23cc0f5b.js.map": "/tryelPortfolio/static/js/main.23cc0f5b.js.map",
     "453.c5e83800.chunk.js.map": "/tryelPortfolio/static/js/453.c5e83800.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.398c9f7d.css",
+    "static/css/main.fd279197.css",
     "static/js/main.23cc0f5b.js"
   ]
 }
