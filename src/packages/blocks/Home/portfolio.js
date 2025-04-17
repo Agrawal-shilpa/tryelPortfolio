@@ -432,7 +432,12 @@ const Portfolio = () => {
             </a>
           </p>
         </div>
+        <footer className="footer">
+  <p>Made with <span className="heart">❤️</span> by Shilpa © 2025</p>
+</footer>
       </section>
+      
+  
     </div>
   );
 };

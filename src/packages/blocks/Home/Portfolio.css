@@ -22,6 +22,7 @@ Portfolio.css
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 body,
 html,
@@ -64,7 +65,11 @@ html,
 
 .navbar {
   display: flex;
-  background-color: var(--bg-color);
+  /* background-color: var(--bg-color); */
+  background-color: var(--bg-color, #ffffff); /* Light fallback */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border-radius: 2px;
+  border-color: bisque;
   padding: 1rem 2rem;
   flex-wrap: wrap;
   /* justify-content: flex-end; */
@@ -79,7 +84,6 @@ html,
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
   padding: 0;
   margin: 0;
   align-items: center;
@@ -356,7 +360,7 @@ html,
 }
 
 .about-text {
-  max-width: "100%";
+  max-width: 100%;
   margin-top: 2rem;
 }
 .work-text {
@@ -496,8 +500,8 @@ html,
   background: var(--bg-color);
   color: var(--text-color);
   font-family: 'Segoe UI', sans-serif;
-  display: flex; /* Enable Flexbox */
-  flex-direction: column; /* Stack children vertically */
+  display: flex; 
+  flex-direction: column; 
   align-items: center; 
 }
 
@@ -545,6 +549,28 @@ html,
 .contact-details a:hover {
   text-decoration: underline;
 }
+.footer {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 100;
+}
+
+.footer .heart {
+  color: #ff4d6d;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 
 @media (max-width: 768px) {
   .hero{
@@ -589,7 +615,7 @@ margin-bottom: 1.5rem;
     /* top: 70px; */
     top:0;
     right: 0;
-    background: #fff;
+    background: var(--nav-bg);
     width: 250px;
     height: 100vh;
     justify-content: flex-start;
@@ -642,6 +668,7 @@ margin-bottom: 1.5rem;
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
  
 }
 @media (min-width: 1024px) {
