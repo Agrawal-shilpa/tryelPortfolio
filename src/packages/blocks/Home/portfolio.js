@@ -161,13 +161,13 @@ const Portfolio = () => {
   return (
     <div>
       <nav className="navbar">
-      <img src={logo} alt="Logo" className="navbar-logo" />
+        <img src={logo} alt="Logo" className="navbar-logo" />
         <div className="menu-icon" onClick={toggleMenu}>
           <div className={isMenuOpen ? "bar1 change" : "bar1"}></div>
           <div className={isMenuOpen ? "bar2 change" : "bar2"}></div>
           <div className={isMenuOpen ? "bar3 change" : "bar3"}></div>
         </div>
-        
+
         <ul className={`nav-links ${isMenuOpen ? "show" : ""}`}>
           <li>
             <a className="anchorTag" href="#about">
@@ -432,12 +432,12 @@ const Portfolio = () => {
             </a>
           </p>
         </div>
-        <footer className="footer">
-  <p>Made with <span className="heart">❤️</span> by Shilpa © 2025</p>
-</footer>
       </section>
-      
-  
+      <footer className="footer">
+        <p>
+          Made with <span className="heart">❤️</span> by Shilpa © 2025
+        </p>
+      </footer>
     </div>
   );
 };
